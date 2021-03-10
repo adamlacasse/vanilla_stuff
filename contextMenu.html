@@ -1,0 +1,76 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+	<style type="text/css"> 
+		.context-menu { 
+			position: absolute;
+
+            box-shadow: 0 0 3px #ccc;
+		} 
+
+		.context-menu ul { 
+			/* padding: 0px;  */
+			/* margin: 0px;  */
+			min-width: 10rem; 
+			list-style: none; 
+		} 
+
+		.context-menu ul li { 
+			/* padding-bottom: 7px;  */
+			/* padding-top: 7px;  */
+			/* border: 1px solid black;  */
+		} 
+
+		.context-menu ul li a { 
+			/* text-decoration: none;  */
+			/* color: black;  */
+		} 
+
+		.context-menu ul li:hover { 
+			/* background: darkgray;  */
+		} 
+	</style> 
+
+</head> 
+
+<body> 
+	<h1 style="text-align: center;"> 
+        Right-click anywhere for the custom context menu
+	</h1> 
+
+	<div id="contextMenu" class="context-menu" style="display:none"> 
+		<ul> 
+			<li><a href="#">Element-1</a></li> 
+			<li><a href="#">Element-2</a></li> 
+			<li><a href="#">Element-3</a></li> 
+			<li><a href="#">Element-4</a></li> 
+			<li><a href="#">Element-5</a></li> 
+			<li><a href="#">Element-6</a></li> 
+			<li><a href="#">Element-7</a></li> 
+		</ul> 
+	</div> 
+
+	<script> 
+		const hideMenu = () => document.getElementById("contextMenu").style.display = "none"; 
+
+		const rightClick = (e)=> {
+            const { pageX, pageY } = e;
+			e.preventDefault(); 
+
+            const menu = document.getElementById("contextMenu");
+               
+            // TODO: if box will be off screen, have it open on the other side of the cursor
+            // prolly need to get size of screen in pixels
+            menu.style.display = 'block';
+            menu.style.left = pageX + "px"; 
+            menu.style.top = pageY + "px"; 
+            console.log({pageX, pageY})
+        }
+        
+        document.onclick = hideMenu; 
+		document.oncontextmenu = rightClick; 
+	</script> 
+</body> 
+
+</html> 
